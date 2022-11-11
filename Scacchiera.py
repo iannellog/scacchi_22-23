@@ -16,9 +16,9 @@ class Scacchiera:
         formate da una lettera in ['A', 'H'] e da un numero in [1, 8]
         il primo dizionario memorizza se una casella è non occupata 
         (None) o è occupata (riferimento al pezzo che la occupa)
-        il secondo dizionario serve per una facile visualizzazione 
-        dello stato della scacchiera
-        
+        il secondo dizionario serve per memorizzare il contenuto
+        delle caselle in una forma visualizzabile
+
         Nell'accesso alle liste che rappresentano le colonne
         della scacchiera bisogna sottrarre 1 perchè gli indici
         delle liste partono da 0
@@ -38,8 +38,8 @@ class Scacchiera:
                       'F': [None]*8,
                       'G': [None]*8,
                       'H': [None]*8}
-        self.piano = {'A': [' ']*8,   # meorizza una rappresentazione
-                      'B': [' ']*8,   # visualizzabile della scacchiera
+        self.piano = {'A': [' ']*8,   # memorizza il contenuto delle casella
+                      'B': [' ']*8,   # della scacchiera in forma visualizzabile
                       'C': [' ']*8,
                       'D': [' ']*8,
                       'E': [' ']*8,
@@ -82,7 +82,7 @@ class Scacchiera:
 
         """
         self.pezzi[posizione[0]][posizione[1]-1] = pezzo
-        self.piano[posizione[0]][posizione[1]-1] = 'x'
+        self.piano[posizione[0]][posizione[1]-1] = pezzo.get_graphic_rep()
     
     def get_pezzo(self, posizione):
         """
@@ -111,6 +111,14 @@ class Scacchiera:
         None.
 
         """
+        print()
+        print('    1   2   3   4   5   6   7   8')
         for col in self.piano.keys():
-            print(f'{col} | {self.piano[col]}')
+            print('  +---+---+---+---+---+---+---+---+')
+            row_rep = f'{col} |'
+            for row in range(8):
+                row_rep += ' ' + self.piano[col][row] + ' |'
+            print(row_rep)
+        print('  +---+---+---+---+---+---+---+---+')
+
         

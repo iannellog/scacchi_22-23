@@ -13,7 +13,7 @@ from Pezzo import Pezzo
 
 def get_mossa():
     """
-    acquisisce una mossa dallo standard input
+    acquisisce una mossa dallo standard input o termina il programma
     La mossa deve essere fornita nel formato:
         
         posizione_di_partenza posizione_di_destinazione
@@ -21,6 +21,9 @@ def get_mossa():
     dove una posizione è una coppia formata da una lettera
     in ['A', 'H'] e da una cifra in [1, 8]
     le due posizioni devono essere separate da un solo spazio
+
+    se la lunghezza della stringa fornita in input è diversa
+    da 5 il programma viene terminato
 
     Returns
     -------
@@ -30,18 +33,25 @@ def get_mossa():
         posizione di destinazione
 
     """
-    mossa = input("Dammi la mossa: ")    
+    mossa = input("Dammi la mossa: ")
+    if not len(mossa) == 5:
+        exit(0)
     return [mossa[0].upper(),int(mossa[1])], [mossa[3].upper(),int(mossa[4])] 
  
 
 if __name__ == "__main__":
     # setup del gioco
     scacchiera = Scacchiera()
-    # posizione 4 pezzi nelle prime 4 righe della colonna A
+    # posizione 4 pezzi bianchi nelle prime 4 righe della colonna A
     for i in range(1,5):
         p = Pezzo('W')
         p.metti(['A', i])
         scacchiera.metti(p,['A', i])
+    # posizione 4 pezzi neri nelle prime 4 righe della colonna H
+    for i in range(1,5):
+        p = Pezzo('B')
+        p.metti(['H', i])
+        scacchiera.metti(p,['H', i])
 
     scacchiera.visualizza()
     print()
@@ -61,5 +71,3 @@ if __name__ == "__main__":
         scacchiera.visualizza()
         print()
 
-    
-    

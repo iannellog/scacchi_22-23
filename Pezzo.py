@@ -17,7 +17,7 @@ class Pezzo:
         Parameters
         ----------
         colore : string
-            indica il colore: bianco ('w') o nero ('b')
+            indica il colore: bianco ('W') o nero ('B')
         posizione : coppia di coordinate (list)
             Posizione del pezzo sulla scacchiera. 
             Il default è None.
@@ -33,6 +33,19 @@ class Pezzo:
         self.colore = colore
         self.posizione = posizione
         self.nome = nome
+        self.graphic_rep = '\u29bf' if self.colore == 'W' else '\u29be'
+
+    def get_graphic_rep(self):
+        """
+        ritorna il simbolo grafico da usare per rappresentare
+        il pezzo sulla scacchiera in forma visuale
+        Returns
+        -------
+        string: il simbolo grafico consiste in una stringa che può
+        contenere i carateri UNICODE e/o caratteri di controllo per
+        il terminale
+        """
+        return self.graphic_rep
         
     def muovi(self, destinazione):
         """
