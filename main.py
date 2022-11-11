@@ -34,31 +34,32 @@ def get_mossa():
     return [mossa[0].upper(),int(mossa[1])], [mossa[3].upper(),int(mossa[4])] 
  
 
-# setup del gioco
-scacchiera = Scacchiera()
-# posizione 4 pezzi nelle prime 4 righe della colonna A 
-for i in range(1,5):
-    p = Pezzo('W')
-    p.metti(['A', i])
-    scacchiera.metti(p,['A', i])
-    
-scacchiera.visualizza()
-print()
-    
-while True:
-    # acquisisce mossa da fare
-    (partenza, destinazione) = get_mossa()
-    # recupera il pezzo da muovere
-    pezzo = scacchiera.get_pezzo(partenza)
-    # muovi il pezzo sulla scacchiera
-    if pezzo.muovi(destinazione):  # la mossa è legale
-        # esegui mossa sulla scacchiera
-        scacchiera.togli(partenza)
-        scacchiera.metti(pezzo, destinazione)
-    else:
-        print(f'La mossa {partenza[0]}{partenza[1]}, {destinazione[0]}{destinazione[1]} non è legale')
+if __name__ == "__main__":
+    # setup del gioco
+    scacchiera = Scacchiera()
+    # posizione 4 pezzi nelle prime 4 righe della colonna A
+    for i in range(1,5):
+        p = Pezzo('W')
+        p.metti(['A', i])
+        scacchiera.metti(p,['A', i])
+
     scacchiera.visualizza()
     print()
+
+    while True:
+        # acquisisce mossa da fare
+        (partenza, destinazione) = get_mossa()
+        # recupera il pezzo da muovere
+        pezzo = scacchiera.get_pezzo(partenza)
+        # muovi il pezzo sulla scacchiera
+        if pezzo.muovi(destinazione):  # la mossa è legale
+            # esegui mossa sulla scacchiera
+            scacchiera.togli(partenza)
+            scacchiera.metti(pezzo, destinazione)
+        else:
+            print(f'La mossa {partenza[0]}{partenza[1]}, {destinazione[0]}{destinazione[1]} non è legale')
+        scacchiera.visualizza()
+        print()
 
     
     
