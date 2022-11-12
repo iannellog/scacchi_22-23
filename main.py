@@ -11,6 +11,23 @@ from Scacchiera import Scacchiera
 from Pezzo import Pezzo
 
 
+def in_board(posizione):
+    """
+    verifica che la posizione sia all'intgerno della scacchiera
+    Parameters
+    ----------
+    posizione: coppia di coordinate
+
+    Returns
+    -------
+    bool
+        True se le coordinate corrispondono a una casella della
+        scacchiera, False altrimenti
+    """
+    return posizione[0] in {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'} and \
+           posizione[1] in range(1, 9)
+
+
 def get_mossa():
     """
     acquisisce una mossa dallo standard input o termina il programma
@@ -33,11 +50,17 @@ def get_mossa():
         posizione di destinazione
 
     """
-    mossa = input("Dammi la mossa: ")
-    if not len(mossa) == 5:
-        exit(0)
-    return [mossa[0].upper(), int(mossa[1])], [mossa[3].upper(), int(mossa[4])]
- 
+    while True:
+        mossa = input("Dammi la mossa: ")
+        if not len(mossa) == 5:  # l'input non è una mossa
+            exit(0)              # termina il programma
+        partenza = [mossa[0].upper(), int(mossa[1])]
+        destinazione = [mossa[3].upper(), int(mossa[4])]
+        if in_board(partenza) and in_board(destinazione):
+            return partenza, destinazione
+        else:
+            print(f'La partenza e/o la destinazione della mossa {mossa} non corrispondono a caselle della scacchiera')
+
 
 if __name__ == "__main__":
     # setup del gioco
@@ -48,7 +71,7 @@ if __name__ == "__main__":
         p.metti(['A', i])
         scacchiera.metti(p, ['A', i])
     # posizione 4 pezzi neri nelle prime 4 righe della colonna H
-    for i in range(1,5):
+    for i in range(1, 5):
         p = Pezzo('B')
         p.metti(['H', i])
         scacchiera.metti(p, ['H', i])
