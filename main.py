@@ -68,12 +68,10 @@ if __name__ == "__main__":
     # posizione 4 pezzi bianchi nelle prime 4 righe della colonna A
     for i in range(1, 5):
         p = Pezzo('W', nome='Pezzo')
-        p.metti(['A', i], scacchiera)
         scacchiera.metti(p, ['A', i])
     # posizione 4 pezzi neri nelle prime 4 righe della colonna H
     for i in range(1, 5):
         p = Pezzo('B', nome='Pezzo')
-        p.metti(['H', i], scacchiera)
         scacchiera.metti(p, ['H', i])
 
     scacchiera.visualizza()
@@ -87,7 +85,7 @@ if __name__ == "__main__":
             # recupera il pezzo da muovere
             pezzo = scacchiera.get_pezzo(partenza)
             # muovi il pezzo sulla scacchiera
-            if pezzo.muovi(destinazione):  # la mossa è legale
+            if pezzo.verifica_mossa(destinazione):  # la mossa è legale
                 break
             else:
                 print(f'La mossa {partenza[0]}{partenza[1]}, {destinazione[0]}{destinazione[1]} non è legale')

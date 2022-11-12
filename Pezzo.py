@@ -48,9 +48,9 @@ class Pezzo:
         """
         return self.graphic_rep
 
-    def muovi(self, destinazione):
+    def verifica_mossa(self, destinazione):
         """
-        muove il pezzo
+        verifica se il pezzo può essere mosso alla destinazione
 
         Parameters
         ----------
