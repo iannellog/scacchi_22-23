@@ -67,13 +67,13 @@ if __name__ == "__main__":
     scacchiera = Scacchiera()
     # posizione 4 pezzi bianchi nelle prime 4 righe della colonna A
     for i in range(1, 5):
-        p = Pezzo('W')
-        p.metti(['A', i])
+        p = Pezzo('W', nome='Pezzo')
+        p.metti(['A', i], scacchiera)
         scacchiera.metti(p, ['A', i])
     # posizione 4 pezzi neri nelle prime 4 righe della colonna H
     for i in range(1, 5):
-        p = Pezzo('B')
-        p.metti(['H', i])
+        p = Pezzo('B', nome='Pezzo')
+        p.metti(['H', i], scacchiera)
         scacchiera.metti(p, ['H', i])
 
     scacchiera.visualizza()

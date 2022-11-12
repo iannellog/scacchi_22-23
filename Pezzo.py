@@ -34,6 +34,7 @@ class Pezzo:
         self.posizione = posizione
         self.nome = nome
         self.graphic_rep = '\u29bf' if self.colore == 'W' else '\u29be'
+        self.scacchiera = None
 
     def get_graphic_rep(self):
         """
@@ -65,20 +66,28 @@ class Pezzo:
         self.posizione = destinazione
         return True  # per ora la mossa è sempre legale
     
-    def metti(self, posizione):
+    def metti(self, posizione, scacchiera=None):
         """
         mette il pezzo sulla scacchiera nella posizione indicata
 
         Parameters
         ----------
-        destinazione : coppia di coordinate (list)
+        posizione : coppia di coordinate (list)
             posizione in cui mettere il pezzo
+        scacchiera : scacchiera su cui posizionare il pezzo
+            se scacchiera = None il pezzo deve essere già posizionato
+            su una scacchiera, altrimenti l'operazione non è valida e
+            viene sollevata un'eccezione
 
         Returns
         -------
         None.
 
         """
+        if not scacchiera == None:  # se il pezzo va associato a una scacchiera
+            self.scacchiera = scacchiera  # lo associa
+        if self.scacchiera == None:  # se il pezzo non è associato a una scacchiera
+            raise ValueError(f'Il {self.nome} {self.colore} non è associato ad alcuna scacchiera')
         self.posizione = posizione
     
     def togli(self):

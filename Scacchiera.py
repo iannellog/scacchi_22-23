@@ -68,6 +68,7 @@ class Scacchiera:
     def metti(self, pezzo, posizione):
         """
         posiziona un pezzo sulla scacchiera
+        e lo associa alla scacchiera
 
         Parameters
         ----------
@@ -81,6 +82,7 @@ class Scacchiera:
         None.
 
         """
+        pezzo.metti(posizione, self)  # associa il pezzo alla scacchiera
         self.pezzi[posizione[0]][posizione[1]-1] = pezzo
         self.piano[posizione[0]][posizione[1]-1] = pezzo.get_graphic_rep()
     
