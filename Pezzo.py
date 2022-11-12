@@ -63,6 +63,11 @@ class Pezzo:
         indica se la mossa è legale o no
 
         """
+        pezzo = self.scacchiera.get_pezzo(destinazione)
+        if not pezzo == None:  # la destinazione è occupata
+            if pezzo.colore == self.colore:
+                print(f'La casella {destinazione} è occupata da un pezzo dello stesso colore')
+                return False
         self.posizione = destinazione
         return True  # per ora la mossa è sempre legale
     
@@ -100,3 +105,4 @@ class Pezzo:
 
         """
         self.posizione = None
+        self.scacchiera = None

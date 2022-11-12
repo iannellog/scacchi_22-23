@@ -90,6 +90,8 @@ if __name__ == "__main__":
             else:
                 print(f'La mossa {partenza[0]}{partenza[1]}, {destinazione[0]}{destinazione[1]} non è legale')
         # esegui mossa sulla scacchiera
+        if not scacchiera.get_pezzo(destinazione) == None:
+            scacchiera.togli(destinazione)
         scacchiera.togli(partenza)
         scacchiera.metti(pezzo, destinazione)
 
