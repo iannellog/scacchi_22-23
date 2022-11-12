@@ -46,7 +46,7 @@ class Pezzo:
         il terminale
         """
         return self.graphic_rep
-        
+
     def muovi(self, destinazione):
         """
         muove il pezzo

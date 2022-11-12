@@ -36,38 +36,42 @@ def get_mossa():
     mossa = input("Dammi la mossa: ")
     if not len(mossa) == 5:
         exit(0)
-    return [mossa[0].upper(),int(mossa[1])], [mossa[3].upper(),int(mossa[4])] 
+    return [mossa[0].upper(), int(mossa[1])], [mossa[3].upper(), int(mossa[4])]
  
 
 if __name__ == "__main__":
     # setup del gioco
     scacchiera = Scacchiera()
     # posizione 4 pezzi bianchi nelle prime 4 righe della colonna A
-    for i in range(1,5):
+    for i in range(1, 5):
         p = Pezzo('W')
         p.metti(['A', i])
-        scacchiera.metti(p,['A', i])
+        scacchiera.metti(p, ['A', i])
     # posizione 4 pezzi neri nelle prime 4 righe della colonna H
     for i in range(1,5):
         p = Pezzo('B')
         p.metti(['H', i])
-        scacchiera.metti(p,['H', i])
+        scacchiera.metti(p, ['H', i])
 
     scacchiera.visualizza()
     print()
 
+    # inizia il gioco
     while True:
-        # acquisisce mossa da fare
-        (partenza, destinazione) = get_mossa()
-        # recupera il pezzo da muovere
-        pezzo = scacchiera.get_pezzo(partenza)
-        # muovi il pezzo sulla scacchiera
-        if pezzo.muovi(destinazione):  # la mossa è legale
-            # esegui mossa sulla scacchiera
-            scacchiera.togli(partenza)
-            scacchiera.metti(pezzo, destinazione)
-        else:
-            print(f'La mossa {partenza[0]}{partenza[1]}, {destinazione[0]}{destinazione[1]} non è legale')
+        while True:
+            # acquisisce mossa da fare
+            (partenza, destinazione) = get_mossa()
+            # recupera il pezzo da muovere
+            pezzo = scacchiera.get_pezzo(partenza)
+            # muovi il pezzo sulla scacchiera
+            if pezzo.muovi(destinazione):  # la mossa è legale
+                break
+            else:
+                print(f'La mossa {partenza[0]}{partenza[1]}, {destinazione[0]}{destinazione[1]} non è legale')
+        # esegui mossa sulla scacchiera
+        scacchiera.togli(partenza)
+        scacchiera.metti(pezzo, destinazione)
+
         scacchiera.visualizza()
         print()
 
