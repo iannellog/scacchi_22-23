@@ -37,12 +37,14 @@ class Torre(Pezzo):
             if self.posizione[0] == destinazione[0]:  # la mossa è lungo la stessa colonna
                 for riga in range(self.posizione[1]+1, destinazione[1]):
                     if not self.scacchiera.get_pezzo([destinazione[0], riga]) == None:
-                        print(f"\u00c8 presente un pezzo ({self.scacchiera.get_pezzo([destinazione[0], riga]).nome}) nella casella {[destinazione[0], riga]}")
+                        print(f"La mossa non è legale perché è presente un pezzo ({self.scacchiera.get_pezzo([destinazione[0], riga]).nome}) nella casella {destinazione[0]}{riga}")
                         return False
                 return True
             elif self.posizione[1] == destinazione[1]:  # la mossa è lungo la stessa riga
                 return True
             else:
+                print(f'La mossa {self.posizione[0]}{self.posizione[1]}, {destinazione[0]}{destinazione[1]} non è legale per la Torre')
                 return False
         else:
+            print(f'La mossa {self.posizione[0]}{self.posizione[1]}, {destinazione[0]}{destinazione[1]} non è legale per la Torre')
             return False

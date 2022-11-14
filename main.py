@@ -88,8 +88,6 @@ if __name__ == "__main__":
             # muovi il pezzo sulla scacchiera
             if pezzo.verifica_mossa(destinazione):  # la mossa è legale
                 break
-            else:
-                print(f'La mossa {partenza[0]}{partenza[1]}, {destinazione[0]}{destinazione[1]} non è legale')
         # esegui mossa sulla scacchiera
         if not scacchiera.get_pezzo(destinazione) == None:
             scacchiera.togli(destinazione)

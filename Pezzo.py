@@ -66,7 +66,7 @@ class Pezzo:
         pezzo = self.scacchiera.get_pezzo(destinazione)
         if not pezzo == None:  # la destinazione è occupata
             if pezzo.colore == self.colore:
-                print(f'La casella {destinazione} è occupata da un pezzo dello stesso colore')
+                print(f'La casella {destinazione[0]}{destinazione[1]} è occupata da un pezzo dello stesso colore')
                 return False
         return True  # per ora la mossa è sempre legale
     
