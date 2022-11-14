@@ -35,6 +35,10 @@ class Torre(Pezzo):
         """
         if super().verifica_mossa(destinazione):  # le condizioni generiche sono verificate
             if self.posizione[0] == destinazione[0]:  # la mossa è lungo la stessa colonna
+                for riga in range(self.posizione[1]+1, destinazione[1]):
+                    if not self.scacchiera.get_pezzo([destinazione[0], riga]) == None:
+                        print(f"\u00c8 presente un pezzo ({self.scacchiera.get_pezzo([destinazione[0], riga]).nome}) nella casella {[destinazione[0], riga]}")
+                        return False
                 return True
             elif self.posizione[1] == destinazione[1]:  # la mossa è lungo la stessa riga
                 return True
