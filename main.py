@@ -9,6 +9,7 @@ Created on Thu Nov 10 10:42:39 2022
 
 from Scacchiera import Scacchiera
 from Pezzo import Pezzo
+from Torre import Torre
 
 
 def in_board(posizione):
@@ -67,11 +68,11 @@ if __name__ == "__main__":
     scacchiera = Scacchiera()
     # posizione 4 pezzi bianchi nelle prime 4 righe della colonna A
     for i in range(1, 5):
-        p = Pezzo('W', nome='Pezzo')
+        p = Torre('W')
         scacchiera.metti(p, ['A', i])
     # posizione 4 pezzi neri nelle prime 4 righe della colonna H
     for i in range(1, 5):
-        p = Pezzo('B', nome='Pezzo')
+        p = Torre('B')
         scacchiera.metti(p, ['H', i])
 
     scacchiera.visualizza()

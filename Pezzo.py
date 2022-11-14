@@ -33,7 +33,7 @@ class Pezzo:
         self.colore = colore
         self.posizione = posizione
         self.nome = nome
-        self.graphic_rep = '\u29bf' if self.colore == 'W' else '\u29be'
+        self.graphic_rep = '\u29be' if self.colore == 'W' else '\u29bf'
         self.scacchiera = None
 
     def get_graphic_rep(self):
@@ -68,7 +68,6 @@ class Pezzo:
             if pezzo.colore == self.colore:
                 print(f'La casella {destinazione} è occupata da un pezzo dello stesso colore')
                 return False
-        self.posizione = destinazione
         return True  # per ora la mossa è sempre legale
     
     def metti(self, posizione, scacchiera=None):
