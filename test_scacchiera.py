@@ -30,6 +30,22 @@ class MyTestCase(unittest.TestCase):
         # verifica coerenza dei dati dopo la mossa
         self.assertEqual(scacchiera.get_pezzo(['H', 8]).posizione, ['H', 8])
 
+    def test_capture(self):
+        scacchiera = Scacchiera()
+        # posiziona due pezzi sulla scacchiera
+        scacchiera.metti(Pezzo('W', nome='Pezzo'), ['A', 1])
+        scacchiera.metti(Pezzo('B', nome='Pezzo'), ['H', 8])
+        pezzo = scacchiera.get_pezzo(['H', 8])
+        # verifica se la casella di destinazione è occupata
+        if not pezzo == None:
+            scacchiera.togli(['H', 8])
+        # muove il pezzo
+        scacchiera.togli(['A', 1])
+        scacchiera.metti(Pezzo('B', nome='Pezzo'), ['H', 8])
+        # verifica coerenza dei dati dopo la mossa
+        self.assertEqual(pezzo.posizione, None)
+        self.assertEqual(pezzo.scacchiera, None)
+
 
 if __name__ == '__main__':
     unittest.main()

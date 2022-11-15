@@ -62,6 +62,7 @@ class Scacchiera:
         None.
 
         """
+        self.pezzi[posizione[0]][posizione[1] - 1].togli()
         self.pezzi[posizione[0]][posizione[1]-1] = None
         self.piano[posizione[0]][posizione[1]-1] = ' '
     
