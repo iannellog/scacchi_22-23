@@ -8,11 +8,16 @@ Created on Thu Nov 10 10:42:39 2022
 """
 
 from Scacchiera import Scacchiera
-from Pezzo import Pezzo
+#from Pezzo import Pezzo
 from Torre import Torre
+from Pedone import Pedone
+from Alfiere import Alfiere
+from Regina import Regina
+from Re import Re
 
 
 def in_board(posizione):
+    
     """
     verifica che la posizione sia all'intgerno della scacchiera
     Parameters
@@ -25,11 +30,12 @@ def in_board(posizione):
         True se le coordinate corrispondono a una casella della
         scacchiera, False altrimenti
     """
-    return posizione[0] in {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'} and \
-           posizione[1] in range(1, 9)
+    
+    return posizione[0] in {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'} and posizione[1] in range(1, 9)
 
 
 def get_mossa():
+    
     """
     acquisisce una mossa dallo standard input o termina il programma
     La mossa deve essere fornita nel formato:
@@ -51,6 +57,7 @@ def get_mossa():
         posizione di destinazione
 
     """
+    
     while True:
         mossa = input("Dammi la mossa: ")
         if not len(mossa) == 5:  # l'input non è una mossa
@@ -66,34 +73,58 @@ def get_mossa():
 if __name__ == "__main__":
     # setup del gioco
     scacchiera = Scacchiera()
-    # posizione 4 pezzi bianchi nelle prime 4 righe della colonna A
-    for i in range(1, 5):
-        p = Torre('W')
-        scacchiera.metti(p, ['A', i])
-    # posizione 4 pezzi neri nelle prime 4 righe della colonna H
-    for i in range(1, 5):
-        p = Torre('B')
-        scacchiera.metti(p, ['H', i])
-
+    # posiziono i pezzi sulla scacchiera
+    for i in range(1, 9):
+        pb = Pedone('B')
+        scacchiera.metti(pb, ['G', i])
+        pw = Pedone('W')
+        scacchiera.metti(pw, ['B', i])
+        if i==1 or i==8:
+            x = Torre('B')
+            scacchiera.metti(x, ['H', i])  
+            x = Torre('W')
+            scacchiera.metti(x, ['A', i])
+        # if i==2 or i==7:
+        #     x = Cavallo('B')
+        #     scacchiera.metti(x, ['H', i])  
+        #     x = Cavallo('W')
+        #     scacchiera.metti(x, ['A', i])
+        if i==3 or i==6:
+            x = Alfiere('B')
+            scacchiera.metti(x, ['H', i])  
+            x = Alfiere('W')
+            scacchiera.metti(x, ['A', i])
+        if i==4:
+            x = Re('B')
+            scacchiera.metti(x, ['H', i])  
+            x = Regina('W')
+            scacchiera.metti(x, ['A', i])
+        if i==5:
+            x = Regina('B')
+            scacchiera.metti(x, ['H', i])  
+            x = Re('W')
+            scacchiera.metti(x, ['A', i])
+    
+        
     scacchiera.visualizza()
     print()
 
-    # inizia il gioco
+# inizia il gioco
+while True:
     while True:
-        while True:
-            # acquisisce mossa da fare
-            (partenza, destinazione) = get_mossa()
-            # recupera il pezzo da muovere
-            pezzo = scacchiera.get_pezzo(partenza)
-            # muovi il pezzo sulla scacchiera
-            if pezzo.verifica_mossa(destinazione):  # la mossa è legale
-                break
-        # esegui mossa sulla scacchiera
-        if not scacchiera.get_pezzo(destinazione) == None:
-            scacchiera.togli(destinazione)
-        scacchiera.togli(partenza)
-        scacchiera.metti(pezzo, destinazione)
+        # acquisisce mossa da fare
+        (partenza, destinazione) = get_mossa()
+        # recupera il pezzo da muovere
+        pezzo = scacchiera.get_pezzo(partenza)
+        # muovi il pezzo sulla scacchiera
+        if pezzo.verifica_mossa(destinazione):  # la mossa è legale
+            break
+    # esegui mossa sulla scacchiera
+    if not scacchiera.get_pezzo(destinazione) == None:
+        scacchiera.togli(destinazione)
+    scacchiera.togli(partenza)
+    scacchiera.metti(pezzo, destinazione)
 
-        scacchiera.visualizza()
-        print()
+    scacchiera.visualizza()
+    print()
 

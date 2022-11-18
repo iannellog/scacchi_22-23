@@ -3,7 +3,7 @@
 """
 Created on Thu Nov 14 10:10:02 2022
 
-@author: iannello
+@author: stefanoperone01
 """
 
 from Pezzo import Pezzo
