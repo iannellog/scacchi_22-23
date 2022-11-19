@@ -35,55 +35,29 @@ class Alfiere(Pezzo):
         """
         if super().verifica_mossa(destinazione):  # le condizioni generiche sono verificate
 
-            #if self.colore=='W':
-            first_1 = self.posizione[1]
-            last_1 = destinazione[1]
-            last = ord(destinazione[0])
-            first = ord(self.posizione[0])
-            if first > last:
-                first = last
-                last = ord(self.posizione[0])
-            distanza_righe = abs(last-first)
-            if first_1 > last_1:
-                first_1 = last_1
-                last_1 = self.posizione[1]
-            distanza_colonne = abs(last_1 - first_1)
-            if distanza_colonne == distanza_righe and distanza_colonne>0:
-                columns = []
-                index = 0
-                for i in range(first_1+1,last_1):
-                    columns[index]=i
-                    index=index+1;
-                rows=[]
-                index = 0
-                for i in range(first+1,last):
-                    rows[index]=chr(i)
-                    index=index+1;
-                length = len(rows)
-                for i in range(length):
-                    if not self.scacchiera.get_pezzo([columns[i], rows[i]]) == None:  # la casella è occupata
-                        print(f"La mossa non è legale perché è presente un pezzo ({self.scacchiera.get_pezzo([columns[i], rows[i]]).nome}) nella casella {columns[i]}{rows[i]}")
+            first_col= self.posizione[1]
+            last_col = destinazione[1]
+            last_row = ord(destinazione[0])
+            first_row = ord(self.posizione[0])
+            if first_row > last_row:
+                first_row = last_row
+                last_row = ord(self.posizione[0])
+            rows_distance = abs(last_row - first_row)
+            if first_col > last_col:
+                first_col = last_col
+                last_col = self.posizione[1]
+            columns_distance = abs(last_col - first_col)
+            #verifico che lo spostamento sia sulla diagonale
+            if columns_distance == rows_distance and columns_distance>0:
+                #verifico che le caselle in cui passare siano libere
+                for i in range(1,columns_distance):
+                    if not self.scacchiera.get_pezzo([chr(first_row+i), first_col+i]) == None:  # la casella è occupata
+                        print(f"La mossa non è legale perché è presente un pezzo ({self.scacchiera.get_pezzo([chr(first_row+i), first_col+i]).nome}) nella casella {chr(first_row+i)}{first_col+i}")
                         return False
-                    # if self.posizione[1]>destinazione[1]:
-                    #     x=x+1
-                    # else:
-                    #     x=x-1
-                    #a=0;
-                    #if not self.scacchiera.get_pezzo([chr(row), x[a]]) == None:  # la casella è occupata
-                        #print(f"La mossa non è legale perché è presente un pezzo ({self.scacchiera.get_pezzo([chr(row), destinazione[1]]).nome}) nella casella {chr(row)}{destinazione[1]}")
-                        #return False
-                    #a=a+1;
-                    # for col,row in range(first+1, last), range(first_1+1,last_1):
-                    #     if not self.scacchiera.get_pezzo([chr(col), row]) == None:  # la casella è occupata
-                    #         print(f"La mossa non è legale perché è presente un pezzo ({self.scacchiera.get_pezzo([chr(col), destinazione[1]]).nome}) nella casella {chr(col)}{destinazione[1]}")
-                    #         return False
-                if not self.scacchiera.get_pezzo([destinazione[0], destinazione[1]]) == None: #and self.scacchiera.get_pezzo([destinazione[0], destinazione[1]]).colore!=self.colore:
-                    #self.posizione = destinazione
-                    print(f"Il pedone ha mangiato il pezzo ({self.scacchiera.get_pezzo([destinazione[0], destinazione[1]]).nome}) nella casella {destinazione[0]}{destinazione[1]}")
+                #se nella casella finale c'è un pezzo avversario, stampo che l'ho mangiato
+                if not self.scacchiera.get_pezzo([destinazione[0], destinazione[1]]) == None:
+                    print(f"L'Alfiere ha mangiato il pezzo ({self.scacchiera.get_pezzo([destinazione[0], destinazione[1]]).nome}) nella casella {destinazione[0]}{destinazione[1]}")
                     return True
-                #elif self.scacchiera.get_pezzo([destinazione[0], destinazione[1]]).colore==self.colore:
-                    #print(f"La mossa non è legale perché è presente un pezzo ({self.scacchiera.get_pezzo([destinazione[0], destinazione[1]]).nome}) dello stesso colore nella casella {destinazione[0]}{destinazione[1]}")
-                    #return False
                 return True
             else:
                 print(f"La mossa {self.posizione[0]}{self.posizione[1]}, {destinazione[0]}{destinazione[1]} non è legale per l'Alfiere")
@@ -91,82 +65,3 @@ class Alfiere(Pezzo):
         else:
             print(f"La mossa {self.posizione[0]}{self.posizione[1]}, {destinazione[0]}{destinazione[1]} non è legale per l'Alfiere")
             return False
-            
-            # if self.colore=='B':
-            #     distanza_col = abs(self.posizione[1]-destinazione[1])
-            #     arrivo = ord(destinazione[0])
-            #     partenza = ord(self.posizione[0])
-            #     distanza_righe = abs(partenza-arrivo)
-            #     if distanza_col == distanza_righe and distanza_righe > 0:
-            #         for col in range(arrivo, partenza):
-            #             if not self.scacchiera.get_pezzo([chr(col), destinazione[1]]) == None:  # la casella è occupata
-            #                 print(f"La mossa non è legale perché è presente un pezzo ({self.scacchiera.get_pezzo([chr(col), destinazione[1]]).nome}) nella casella {chr(col)}{destinazione[1]}")
-            #                 return False
-            #         return True
-            #     else:
-            #         print(f"La mossa {self.posizione[0]}{self.posizione[1]}, {destinazione[0]}{destinazione[1]} non è legale per l'Alfiere")
-            #         return False
-                   
-            
-                    
-                    
-        #            if self.posizione[1] == destinazione[1]:  # la mossa è lungo la stessa colonna
-        #             partenza=ord(self.posizione[0])
-        #             arrivo=ord(destinazione[0])
-        #             #verifico se lo spostamento è di una sola unità (o di due nel caso di prima mossa)
-        #             if arrivo==partenza+1 or (arrivo==partenza+2 and partenza==ord('B')):
-        #                 #in tal caso verifico che la cella (o le due celle in caso di prima mossa) non sia occupata
-        #                 for col in range(partenza+1, arrivo):
-        #                     if not self.scacchiera.get_pezzo([chr(col), destinazione[1]]) == None:  # la casella è occupata
-        #                         print(f"La mossa non è legale perché è presente un pezzo ({self.scacchiera.get_pezzo([chr(col), destinazione[1]]).nome}) nella casella {chr(col)}{destinazione[1]}")
-        #                         return False
-        #                     else:
-        #                         return True
-        #             else:
-        #                 print(f'La mossa {self.posizione[0]}{self.posizione[1]}, {destinazione[0]}{destinazione[1]} non è legale per il Pedone')
-        #                 return False
-        #         elif self.posizione[1]==destinazione[1]+1 or self.posizione[1]==destinazione[1]-1:
-        #             partenza=ord(self.posizione[0])
-        #             arrivo=ord(destinazione[0])
-        #             if arrivo==partenza+1:
-        #                 if not self.scacchiera.get_pezzo([chr(arrivo), destinazione[1]]) == None and self.scacchiera.get_pezzo([chr(arrivo), destinazione[1]]).colore=='B':
-        #                     self.posizione = destinazione
-        #                     print(f"Il pedone ha mangiato il pezzo ({self.scacchiera.get_pezzo([chr(arrivo), destinazione[1]]).nome}) nella casella {chr(arrivo)}{destinazione[1]}")
-        #                     return True
-        
-        #             return False
-        #         else:
-        #             print(f'La mossa {self.posizione[0]}{self.posizione[1]}, {destinazione[0]}{destinazione[1]} non è legale per il Pedone')
-        #             return False
-                
-        #     if self.colore=='B':
-        #         if self.posizione[1] == destinazione[1]:  # la mossa è lungo la stessa colonna
-        #             partenza=ord(self.posizione[0])
-        #             arrivo=ord(destinazione[0])
-        #             if arrivo==partenza-1 or (arrivo==partenza-2 and partenza==ord('G')):
-        #                 for col in range(arrivo, partenza):
-        #                     if not self.scacchiera.get_pezzo([chr(col), destinazione[1]]) == None:  # la casella è occupata
-        #                         print(f"La mossa non è legale perché è presente un pezzo ({self.scacchiera.get_pezzo([chr(col), destinazione[1]]).nome}) nella casella {chr(col)}{destinazione[1]}")
-        #                         return False
-        #                     else:
-        #                         return True
-        #             else:
-        #                 print(f'La mossa {self.posizione[0]}{self.posizione[1]}, {destinazione[0]}{destinazione[1]} non è legale per il Pedone')
-        #                 return False
-        #         elif self.posizione[1]==destinazione[1]+1 or self.posizione[1]==destinazione[1]-1:
-        #             partenza=ord(self.posizione[0])
-        #             arrivo=ord(destinazione[0])
-        #             if arrivo==partenza-1:
-        #                 if not self.scacchiera.get_pezzo([chr(arrivo), destinazione[1]]) == None and self.scacchiera.get_pezzo([chr(arrivo), destinazione[1]]).colore=='W':
-        #                     self.posizione = destinazione
-        #                     print(f"Il pedone ha mangiato il pezzo ({self.scacchiera.get_pezzo([chr(arrivo), destinazione[1]]).nome}) nella casella {chr(arrivo)}{destinazione[1]}")
-        #                     return True
-        
-        #             return False
-        #         else:
-        #             print(f'La mossa {self.posizione[0]}{self.posizione[1]}, {destinazione[0]}{destinazione[1]} non è legale per il Pedone')
-                    
-                 
-        # else:
-        #     print(f'La mossa {self.posizione[0]}{self.posizione[1]}, {destinazione[0]}{destinazione[1]} non è legale per il Pedone')
-        #     return False

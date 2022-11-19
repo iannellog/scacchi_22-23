@@ -14,6 +14,7 @@ from Pedone import Pedone
 from Alfiere import Alfiere
 from Regina import Regina
 from Re import Re
+from Cavallo import Cavallo
 
 
 def in_board(posizione):
@@ -84,25 +85,25 @@ if __name__ == "__main__":
             scacchiera.metti(x, ['H', i])  
             x = Torre('W')
             scacchiera.metti(x, ['A', i])
-        # if i==2 or i==7:
-        #     x = Cavallo('B')
-        #     scacchiera.metti(x, ['H', i])  
-        #     x = Cavallo('W')
-        #     scacchiera.metti(x, ['A', i])
+        if i==2 or i==7:
+            x = Cavallo('B')
+            scacchiera.metti(x, ['H', i])  
+            x = Cavallo('W')
+            scacchiera.metti(x, ['A', i])
         if i==3 or i==6:
             x = Alfiere('B')
             scacchiera.metti(x, ['H', i])  
             x = Alfiere('W')
             scacchiera.metti(x, ['A', i])
         if i==4:
-            x = Re('B')
+            king_b = Re('B')
             scacchiera.metti(x, ['H', i])  
             x = Regina('W')
             scacchiera.metti(x, ['A', i])
         if i==5:
             x = Regina('B')
             scacchiera.metti(x, ['H', i])  
-            x = Re('W')
+            king_w = Re('W')
             scacchiera.metti(x, ['A', i])
     
         

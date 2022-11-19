@@ -35,7 +35,6 @@ class Re(Pezzo):
         """
         if super().verifica_mossa(destinazione):  # le condizioni generiche sono verificate
 
-            #if self.colore=='W':
             first_col = self.posizione[1]
             last_col = destinazione[1]
             last_row = ord(destinazione[0])
@@ -51,17 +50,11 @@ class Re(Pezzo):
                     if not self.scacchiera.get_pezzo([chr(row), destinazione[1]]) == None:  # la casella è occupata
                         print(f"La mossa non è legale perché è presente un pezzo ({self.scacchiera.get_pezzo([chr(row), destinazione[1]]).nome}) nella casella {chr(row)}{destinazione[1]}")
                         return False
-                # for col in range(first_col+1, last_col+1):
-                #     if not self.scacchiera.get_pezzo([destinazione[0],chr(col)]) == None:  # la casella è occupata
-                #         print(f"La mossa non è legale perché è presente un pezzo ({self.scacchiera.get_pezzo([destinazione[0], chr(col)]).nome}) nella casella {destinazione[0]}{chr(col)}")
-                #         return False
-                if not self.scacchiera.get_pezzo([destinazione[0], destinazione[1]]) == None: #and self.scacchiera.get_pezzo([destinazione[0], destinazione[1]]).colore!=self.colore:
-                    #self.posizione = destinazione
+                
+                if not self.scacchiera.get_pezzo([destinazione[0], destinazione[1]]) == None:
                     print(f"Il pedone ha mangiato il pezzo ({self.scacchiera.get_pezzo([destinazione[0], destinazione[1]]).nome}) nella casella {destinazione[0]}{destinazione[1]}")
                     return True
-                #elif self.scacchiera.get_pezzo([destinazione[0], destinazione[1]]).colore==self.colore:
-                    #print(f"La mossa non è legale perché è presente un pezzo ({self.scacchiera.get_pezzo([destinazione[0], destinazione[1]]).nome}) dello stesso colore nella casella {destinazione[0]}{destinazione[1]}")
-                    #return False
+                
                 return True
             else:
                 print(f"La mossa {self.posizione[0]}{self.posizione[1]}, {destinazione[0]}{destinazione[1]} non è legale per il Re")

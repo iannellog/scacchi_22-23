@@ -55,14 +55,9 @@ class Pedone(Pezzo):
                     partenza=ord(self.posizione[0])
                     arrivo=ord(destinazione[0])
                     if arrivo==partenza+1:
-                        if not self.scacchiera.get_pezzo([destinazione[0], destinazione[1]]) == None: #and self.scacchiera.get_pezzo([destinazione[0], destinazione[1]]).colore=='B':
-                            #self.posizione = destinazione
+                        if not self.scacchiera.get_pezzo([destinazione[0], destinazione[1]]) == None:
                             print(f"Il pedone ha mangiato il pezzo ({self.scacchiera.get_pezzo([destinazione[0], destinazione[1]]).nome}) nella casella {destinazione[0]}{destinazione[1]}")
                             return True
-                        #elif self.scacchiera.get_pezzo([destinazione[0], destinazione[1]]).colore==self.colore:
-                            #print(f"La mossa non è legale perché è presente un pezzo ({self.scacchiera.get_pezzo([destinazione[0], destinazione[1]]).nome}) dello stesso colore nella casella {destinazione[0]}{destinazione[1]}")
-                            #return False
-
                     return False
                 else:
                     print(f'La mossa {self.posizione[0]}{self.posizione[1]}, {destinazione[0]}{destinazione[1]} non è legale per il Pedone')
@@ -86,13 +81,9 @@ class Pedone(Pezzo):
                     partenza=ord(self.posizione[0])
                     arrivo=ord(destinazione[0])
                     if arrivo==partenza-1:
-                        if not self.scacchiera.get_pezzo([destinazione[0], destinazione[1]]) == None: #and self.scacchiera.get_pezzo([destinazione[0], destinazione[1]]).colore=='W':
-                            #self.posizione = destinazione
+                        if not self.scacchiera.get_pezzo([destinazione[0], destinazione[1]]) == None:
                             print(f"Il pedone ha mangiato il pezzo ({self.scacchiera.get_pezzo([destinazione[0], destinazione[1]]).nome}) nella casella {destinazione[0]}{destinazione[1]}")
                             return True
-                        #elif self.scacchiera.get_pezzo([destinazione[0], destinazione[1]]).colore==self.colore:
-                            #print(f"La mossa non è legale perché è presente un pezzo ({self.scacchiera.get_pezzo([destinazione[0], destinazione[1]]).nome}) dello stesso colore nella casella {destinazione[0]}{destinazione[1]}")
-                            #return False
 
                     return False
                 else:

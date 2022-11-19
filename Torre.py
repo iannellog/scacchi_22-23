@@ -3,7 +3,7 @@
 """
 Created on Thu Nov 14 10:10:02 2022
 
-@author: iannello
+@author: stefanoperone01
 """
 
 from Pezzo import Pezzo
@@ -43,9 +43,8 @@ class Torre(Pezzo):
                     if not self.scacchiera.get_pezzo([destinazione[0], riga]) == None:  # la casella è occupata
                         print(f"La mossa non è legale perché è presente un pezzo ({self.scacchiera.get_pezzo([destinazione[0], riga]).nome}) nella casella {destinazione[0]}{riga}")
                         return False
-                if not self.scacchiera.get_pezzo([destinazione[0], destinazione[1]]) == None: #and self.scacchiera.get_pezzo([destinazione[0], destinazione[1]]).colore!=self.colore:
-                    #self.posizione = destinazione
-                    print(f"Il pedone ha mangiato il pezzo ({self.scacchiera.get_pezzo([destinazione[0], destinazione[1]]).nome}) nella casella {destinazione[0]}{destinazione[1]}")
+                if not self.scacchiera.get_pezzo([destinazione[0], destinazione[1]]) == None:
+                    print(f"La torre ha mangiato il pezzo ({self.scacchiera.get_pezzo([destinazione[0], destinazione[1]]).nome}) nella casella {destinazione[0]}{destinazione[1]}")
                     return True
                 return True
             elif self.posizione[1] == destinazione[1]:  # la mossa è lungo la stessa riga
@@ -57,9 +56,8 @@ class Torre(Pezzo):
                     if not self.scacchiera.get_pezzo([chr(col), destinazione[1]]) == None:  # la casella è occupata
                         print(f"La mossa non è legale perché è presente un pezzo ({self.scacchiera.get_pezzo([chr(col), destinazione[1]]).nome}) nella casella {chr(col)}{destinazione[1]}")
                         return False
-                if not self.scacchiera.get_pezzo([destinazione[0], destinazione[1]]) == None: #and self.scacchiera.get_pezzo([destinazione[0], destinazione[1]]).colore!=self.colore:
-                    #self.posizione = destinazione
-                    print(f"Il pedone ha mangiato il pezzo ({self.scacchiera.get_pezzo([destinazione[0], destinazione[1]]).nome}) nella casella {destinazione[0]}{destinazione[1]}")
+                if not self.scacchiera.get_pezzo([destinazione[0], destinazione[1]]) == None:
+                    print(f"La torre ha mangiato il pezzo ({self.scacchiera.get_pezzo([destinazione[0], destinazione[1]]).nome}) nella casella {destinazione[0]}{destinazione[1]}")
                     return True
                 return True
             else:
