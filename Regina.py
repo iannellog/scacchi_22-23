@@ -35,15 +35,41 @@ class Regina(Pezzo):
         """
         if super().verifica_mossa(destinazione):  # le condizioni generiche sono verificate
 
-            distanza_col = abs(destinazione[1]-self.posizione[1])
-            last = ord(destinazione[0])
-            first = ord(self.posizione[0])
-            distanza_righe = abs(last-first)
+            first_col= self.posizione[1]
+            last_col = destinazione[1]
+            last_row = ord(destinazione[0])
+            first_row = ord(self.posizione[0])
+            if first_row > last_row:
+                first_row = last_row
+                last_row = ord(self.posizione[0])
+            rows_distance = abs(last_row - first_row)
+            if first_col > last_col:
+                first_col = last_col
+                last_col = self.posizione[1]
+            columns_distance = abs(last_col - first_col)
             #Verifico se i movimenti sono quelli consentiti (movimenti di torre e alfiere)
-            if distanza_col == distanza_righe or self.posizione[0]==destinazione[0] or self.posizione[1]==destinazione[1]:
-                for col in range(first+1, last):
-                    if not self.scacchiera.get_pezzo([chr(col), destinazione[1]]) == None:  # la casella è occupata
-                        print(f"La mossa non è legale perché è presente un pezzo ({self.scacchiera.get_pezzo([chr(col), destinazione[1]]).nome}) nella casella {chr(col)}{destinazione[1]}")
+            if columns_distance == rows_distance:
+                for i in range(1,columns_distance):
+                        if not self.scacchiera.get_pezzo([chr(first_row+i), first_col+i]) == None:  # la casella è occupata
+                            print(f"La mossa non è legale perché è presente un pezzo ({self.scacchiera.get_pezzo([chr(first_row+i), first_col+i]).nome}) nella casella {chr(first_row+i)}{first_col+i}")
+                            return False
+                if not self.scacchiera.get_pezzo([destinazione[0], destinazione[1]]) == None:
+                    print(f"La Regina ha mangiato il pezzo ({self.scacchiera.get_pezzo([destinazione[0], destinazione[1]]).nome}) nella casella {destinazione[0]}{destinazione[1]}")
+                    return True
+                return True
+            elif self.posizione[0]==destinazione[0]:
+                for row in range(first_row, last_row):
+                    if not self.scacchiera.get_pezzo([chr(row), destinazione[1]]) == None:  # la casella è occupata
+                        print(f"La mossa non è legale perché è presente un pezzo ({self.scacchiera.get_pezzo([chr(row), destinazione[1]]).nome}) nella casella {chr(row)}{destinazione[1]}")
+                        return False
+                if not self.scacchiera.get_pezzo([destinazione[0], destinazione[1]]) == None:
+                    print(f"La Regina ha mangiato il pezzo ({self.scacchiera.get_pezzo([destinazione[0], destinazione[1]]).nome}) nella casella {destinazione[0]}{destinazione[1]}")
+                    return True
+                return True
+            elif self.posizione[1]==destinazione[1]:
+                for col in range(first_col, last_col):
+                    if not self.scacchiera.get_pezzo([destinazione[0],chr(col)]) == None:  # la casella è occupata
+                        print(f"La mossa non è legale perché è presente un pezzo ({self.scacchiera.get_pezzo([destinazione[0],chr(col)]).nome}) nella casella {destinazione[0]}{chr(col)}")
                         return False
                 if not self.scacchiera.get_pezzo([destinazione[0], destinazione[1]]) == None:
                     print(f"La Regina ha mangiato il pezzo ({self.scacchiera.get_pezzo([destinazione[0], destinazione[1]]).nome}) nella casella {destinazione[0]}{destinazione[1]}")
