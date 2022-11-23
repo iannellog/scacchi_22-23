@@ -58,18 +58,22 @@ class Regina(Pezzo):
                     return True
                 return True
             elif self.posizione[0]==destinazione[0]:
-                for row in range(first_row, last_row):
-                    if not self.scacchiera.get_pezzo([chr(row), destinazione[1]]) == None:  # la casella è occupata
-                        print(f"La mossa non è legale perché è presente un pezzo ({self.scacchiera.get_pezzo([chr(row), destinazione[1]]).nome}) nella casella {chr(row)}{destinazione[1]}")
+                first = self.posizione[1]+1 if self.posizione[1]+1 < destinazione[1] else destinazione[1]+1  # prima riga da esaminare
+                last = destinazione[1] if self.posizione[1]+1 < destinazione[1] else self.posizione[1]  # ultma riga da esaminare
+                for riga in range(first, last):
+                    if not self.scacchiera.get_pezzo([destinazione[0], riga]) == None:  # la casella è occupata
+                        print(f"La mossa non è legale perché è presente un pezzo ({self.scacchiera.get_pezzo([destinazione[0], riga]).nome}) nella casella {destinazione[0]}{riga}")
                         return False
                 if not self.scacchiera.get_pezzo([destinazione[0], destinazione[1]]) == None:
                     print(f"La Regina ha mangiato il pezzo ({self.scacchiera.get_pezzo([destinazione[0], destinazione[1]]).nome}) nella casella {destinazione[0]}{destinazione[1]}")
                     return True
                 return True
             elif self.posizione[1]==destinazione[1]:
-                for col in range(first_col, last_col):
-                    if not self.scacchiera.get_pezzo([destinazione[0],chr(col)]) == None:  # la casella è occupata
-                        print(f"La mossa non è legale perché è presente un pezzo ({self.scacchiera.get_pezzo([destinazione[0],chr(col)]).nome}) nella casella {destinazione[0]}{chr(col)}")
+                first = ord(self.posizione[0])+1 if ord(self.posizione[0])+1 < ord(destinazione[0]) else ord(destinazione[0])+1  # prima colonna da esaminare
+                last = ord(destinazione[0]) if ord(self.posizione[0])+1 < ord(destinazione[0]) else ord(self.posizione[0])  # ultma colonna da esaminare
+                for col in range(first, last):
+                    if not self.scacchiera.get_pezzo([chr(col), destinazione[1]]) == None:  # la casella è occupata
+                        print(f"La mossa non è legale perché è presente un pezzo ({self.scacchiera.get_pezzo([chr(col), destinazione[1]]).nome}) nella casella {chr(col)}{destinazione[1]}")
                         return False
                 if not self.scacchiera.get_pezzo([destinazione[0], destinazione[1]]) == None:
                     print(f"La Regina ha mangiato il pezzo ({self.scacchiera.get_pezzo([destinazione[0], destinazione[1]]).nome}) nella casella {destinazione[0]}{destinazione[1]}")
