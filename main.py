@@ -85,43 +85,51 @@ if __name__ == "__main__":
             scacchiera.metti(x, ['H', i])  
             x = Torre('W')
             scacchiera.metti(x, ['A', i])
-        if i==2 or i==7:
+        elif i==2 or i==7:
             x = Cavallo('B')
             scacchiera.metti(x, ['H', i])  
             x = Cavallo('W')
             scacchiera.metti(x, ['A', i])
-        if i==3 or i==6:
+        elif i==3 or i==6:
             x = Alfiere('B')
             scacchiera.metti(x, ['H', i])  
             x = Alfiere('W')
             scacchiera.metti(x, ['A', i])
-        if i==4:
+        elif i==4:
             king_b = Re('B')
-            scacchiera.metti(x, ['H', i])  
+            scacchiera.metti(king_b, ['H', i])  
             x = Regina('W')
             scacchiera.metti(x, ['A', i])
-        if i==5:
+        elif i==5:
             x = Regina('B')
             scacchiera.metti(x, ['H', i])  
             king_w = Re('W')
-            scacchiera.metti(x, ['A', i])
+            scacchiera.metti(king_w, ['A', i])
     
         
     scacchiera.visualizza()
     print()
-
+    
+    mossa_bianca = 1
+    eliminati_bianchi=[]
+    eliminati_neri=[]
 # inizia il gioco
 while True:
     while True:
+        esegui = 0
         # acquisisce mossa da fare
         (partenza, destinazione) = get_mossa()
         # recupera il pezzo da muovere
         pezzo = scacchiera.get_pezzo(partenza)
         # muovi il pezzo sulla scacchiera
-        if pezzo.verifica_mossa(destinazione):  # la mossa è legale
+        if pezzo.verifica_mossa(destinazione): # la mossa è legale
             break
     # esegui mossa sulla scacchiera
     if not scacchiera.get_pezzo(destinazione) == None:
+        if scacchiera.get_pezzo(destinazione).colore == 'W':
+            eliminati_bianchi.append(scacchiera.get_pezzo(destinazione))
+        else:
+            eliminati_neri.append(scacchiera.get_pezzo(destinazione))
         scacchiera.togli(destinazione)
     scacchiera.togli(partenza)
     scacchiera.metti(pezzo, destinazione)
