@@ -110,13 +110,11 @@ if __name__ == "__main__":
     scacchiera.visualizza()
     print()
     
-    mossa_bianca = 1
     eliminati_bianchi=[]
     eliminati_neri=[]
 # inizia il gioco
 while True:
     while True:
-        esegui = 0
         # acquisisce mossa da fare
         (partenza, destinazione) = get_mossa()
         # recupera il pezzo da muovere
