@@ -69,12 +69,19 @@ def get_mossa():
             return partenza, destinazione
         else:
             print(f'La partenza e/o la destinazione della mossa {mossa} non corrispondono a caselle della scacchiera')
+            
+def crea_scacchiera(scacchiera):
+    
+    '''
+    Acquisisce una variabile di tipo Scacchiera e posiziona
+    al suo interno i vari pezzi al loro posto
 
+    Returns
+    -------
+    None.
 
-if __name__ == "__main__":
-    # setup del gioco
-    scacchiera = Scacchiera()
-    # posiziono i pezzi sulla scacchiera
+    '''
+    
     for i in range(1, 9):
         pb = Pedone('B')
         scacchiera.metti(pb, ['G', i])
@@ -105,13 +112,20 @@ if __name__ == "__main__":
             scacchiera.metti(x, ['H', i])  
             king_w = Re('W')
             scacchiera.metti(king_w, ['A', i])
-    
+
+
+if __name__ == "__main__":
+    # setup del gioco
+    scacchiera = Scacchiera()
+    # posiziono i pezzi sulla scacchiera
+    crea_scacchiera(scacchiera) 
         
     scacchiera.visualizza()
     print()
     
     eliminati_bianchi=[]
     eliminati_neri=[]
+    
 # inizia il gioco
 while True:
     while True:
