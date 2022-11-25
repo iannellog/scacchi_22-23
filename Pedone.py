@@ -68,7 +68,7 @@ class Pedone(Pezzo):
                     partenza=ord(self.posizione[0])
                     arrivo=ord(destinazione[0])
                     if arrivo==partenza-1 or (arrivo==partenza-2 and partenza==ord('G')):
-                        for col in range(arrivo+1, partenza+1):
+                        for col in range(arrivo, partenza):
                             if not self.scacchiera.get_pezzo([chr(col), destinazione[1]]) == None:  # la casella è occupata
                                 print(f"La mossa non è legale perché è presente un pezzo ({self.scacchiera.get_pezzo([chr(col), destinazione[1]]).nome}) nella casella {chr(col)}{destinazione[1]}")
                                 return False
