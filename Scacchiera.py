@@ -48,7 +48,7 @@ class Scacchiera:
                       'H': [' ']*8}
          
         
-    def togli(self, posizione):
+    def togli(self, posizione, nome='None'):
         """
         toglie un pezzo dalla scacchiera e lo sostituisce con None
 
@@ -115,13 +115,17 @@ class Scacchiera:
 
         """
         print()
+        
         print('    1   2   3   4   5   6   7   8')
         for col in self.piano.keys():
             print('  +---+---+---+---+---+---+---+---+')
             row_rep = f'{col} |'
             for row in range(8):
                 row_rep += ' ' + self.piano[col][row] + ' |'
+            row_rep += f' {col}'
             print(row_rep)
+        
         print('  +---+---+---+---+---+---+---+---+')
+        print('    1   2   3   4   5   6   7   8')
 
         
