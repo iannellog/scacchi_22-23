@@ -89,8 +89,8 @@ if __name__ == "__main__":
             if pezzo.verifica_mossa(destinazione):  # la mossa è legale
                 break
         # esegui mossa sulla scacchiera
-        if not scacchiera.get_pezzo(destinazione) == None:
-            scacchiera.togli(destinazione)
+        if not scacchiera.get_pezzo(destinazione) is None:  # la casella è occupata
+            scacchiera.togli(destinazione)  # "mangia" il pezzo che occupa la casella
         scacchiera.togli(partenza)
         scacchiera.metti(pezzo, destinazione)
 
