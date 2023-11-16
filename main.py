@@ -10,7 +10,7 @@ Created on Thu Nov 10 10:42:39 2022
 from Scacchiera import Scacchiera
 from Pezzo import Pezzo
 from Torre import Torre
-
+from Alfiere import Alfiere
 
 def in_board(posizione):
     """
@@ -67,13 +67,23 @@ if __name__ == "__main__":
     # setup del gioco
     scacchiera = Scacchiera()
     # posizione 4 pezzi bianchi nelle prime 4 righe della colonna A
-    for i in range(1, 5):
-        p = Torre('W')
-        scacchiera.metti(p, ['A', i])
+   # for i in range(1, 5):
+        #p = Torre('W')
+        #scacchiera.metti(p, ['A', i])
     # posizione 4 pezzi neri nelle prime 4 righe della colonna H
-    for i in range(1, 5):
-        p = Torre('B')
+    #for i in range(1, 5):
+       #p = Torre('B')
+        #scacchiera.metti(p, ['H', i])
+
+    # posizionamento dei quattro alfieri
+    for i in range(-2,4,5): # due alfieri bianchi
+        p = Alfiere('W')
+        scacchiera.metti(p, ['A', i])
+
+    for i in range(-2,4,5): # due alfieri neri
+        p = Alfiere('B')
         scacchiera.metti(p, ['H', i])
+
 
     scacchiera.visualizza()
     print()
