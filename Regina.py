@@ -27,7 +27,7 @@ class Regina(Pezzo):
 
                     # Verifica se il movimento è lungo la stessa colonna o riga o diagonale
                     if diff_colonne == 0 or diff_righe == 0 or diff_colonne == diff_righe:
-                        # Verifica che non ci siano pezzi lungo il percorso
+                       
                         #aggiunge 1 se ci spostiamo a dx o -1 se a sx
                         direzione_colonne = 1 if self.posizione[0] < destinazione[0] else -1
                         # aggiunge 1 se saliamo o -1 se scendiamo
