@@ -47,10 +47,10 @@ class Scacchiera:
                       'G': [' ']*8,
                       'H': [' ']*8}
          
-        
+
     def togli(self, posizione):
         """
-        toglie un pezzo dalla scacchiera e lo sostituisce con None
+.0      toglie un pezzo dalla scacchiera e lo sostituisce con None
 
         Parameters
         ----------

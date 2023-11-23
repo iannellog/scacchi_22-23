@@ -10,11 +10,11 @@ Created on Thu Nov 10 10:42:39 2022
 from Scacchiera import Scacchiera
 from Pezzo import Pezzo
 from Torre import Torre
-
+from alfiere import alfiere
 
 def in_board(posizione):
     """
-    verifica che la posizione sia all'intgerno della scacchiera
+    verifica che la posizione sia all'interno della scacchiera
     Parameters
     ----------
     posizione: coppia di coordinate
@@ -57,6 +57,9 @@ def get_mossa():
             exit(0)              # termina il programma
         partenza = [mossa[0].upper(), int(mossa[1])]
         destinazione = [mossa[3].upper(), int(mossa[4])]
+            #print(partenza)
+        #print(destinazione)
+
         if in_board(partenza) and in_board(destinazione):
             return partenza, destinazione
         else:
@@ -67,16 +70,32 @@ if __name__ == "__main__":
     # setup del gioco
     scacchiera = Scacchiera()
     # posizione 4 pezzi bianchi nelle prime 4 righe della colonna A
-    for i in range(1, 5):
-        p = Torre('W')
+    # p = alfiere('W')
+    # g = alfiere('B')
+    #h= Torre('W')
+    #t=Torre('B')
+    scacchiera.metti(alfiere('W'),['A', 6])
+    scacchiera.metti(alfiere('W'), ['A', 3])
+    scacchiera.metti(alfiere('B'), ['H', 6])
+    scacchiera.metti(alfiere('B'), ['H',3])
+   # scacchiera.metti(t,['H', 1])
+    #scacchiera.metti(t, ['H', 8])
+    #scacchiera.metti(h, ['A', 8])
+    #scacchiera.metti(h , ['A', 1])
+
+   # OSS questo non va bene perche cambaimo il numero delle posizioni
+    '''for i in range(1,9):
+        p = alfiere('W')
         scacchiera.metti(p, ['A', i])
     # posizione 4 pezzi neri nelle prime 4 righe della colonna H
-    for i in range(1, 5):
-        p = Torre('B')
-        scacchiera.metti(p, ['H', i])
+    for i in range(-2,4,5):
+        p = alfiere('B')
+        scacchiera.metti(p, ['H', i])'''
+
 
     scacchiera.visualizza()
     print()
+
 
     # inizia il gioco
     while True:

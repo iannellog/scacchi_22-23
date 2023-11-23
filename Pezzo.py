@@ -35,6 +35,7 @@ class Pezzo:
         self.nome = nome
         self.graphic_rep = '\u29be' if self.colore == 'W' else '\u29bf'
         self.scacchiera = None
+        #print("prova")
 
     def get_graphic_rep(self):
         """
@@ -62,7 +63,7 @@ class Pezzo:
         bool
         indica se la mossa è legale o no
 
-        """
+        """ # verifica che non ci sia pedina di stesso colore nellla casella di attivo --> fare per quelle in mezzo
         pezzo = self.scacchiera.get_pezzo(destinazione)
         if not pezzo == None:  # la destinazione è occupata
             if pezzo.colore == self.colore:
