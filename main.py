@@ -10,6 +10,7 @@ Created on Thu Nov 10 10:42:39 2022
 from Scacchiera import Scacchiera
 from Pezzo import Pezzo
 from Torre import Torre
+from Cavallo import Cavallo
 
 
 def in_board(posizione):
@@ -62,18 +63,26 @@ def get_mossa():
         else:
             print(f'La partenza e/o la destinazione della mossa {mossa} non corrispondono a caselle della scacchiera')
 
+def posizionaPezzi():
+    #vengono posizionate prima le pedine bianche
+    scacchiera.metti(Torre('W'), ['A',1])
+    scacchiera.metti(Torre('W'), ['H', 1])
+    scacchiera.metti(Cavallo('W'),['B',1])
+    scacchiera.metti(Cavallo('W'),['G',1])
+
+    #vengono posizionate le pedine nere
+    scacchiera.metti(Torre('B'), ['A',8])
+    scacchiera.metti(Torre('B'), ['H', 8])
+    scacchiera.metti(Cavallo('B'),['B',8])
+    scacchiera.metti(Cavallo('B'),['G',8])
+
+
 
 if __name__ == "__main__":
     # setup del gioco
     scacchiera = Scacchiera()
     # posizione 4 pezzi bianchi nelle prime 4 righe della colonna A
-    for i in range(1, 5):
-        p = Torre('W')
-        scacchiera.metti(p, ['A', i])
-    # posizione 4 pezzi neri nelle prime 4 righe della colonna H
-    for i in range(1, 5):
-        p = Torre('B')
-        scacchiera.metti(p, ['H', i])
+    posizionaPezzi()
 
     scacchiera.visualizza()
     print()
@@ -97,4 +106,3 @@ if __name__ == "__main__":
 
         scacchiera.visualizza()
         print()
-
