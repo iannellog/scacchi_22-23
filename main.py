@@ -85,8 +85,9 @@ if __name__ == "__main__":
             (partenza, destinazione) = get_mossa()
             # recupera il pezzo da muovere
             pezzo = scacchiera.get_pezzo(partenza)
-            # muovi il pezzo sulla scacchiera
-            if pezzo.verifica_mossa(destinazione):  # la mossa è legale
+            if pezzo is None:  # la mossa parte da una casella vuota
+                print(f'La mossa non è valida: la casella di partenza è vuota')
+            elif pezzo.verifica_mossa(destinazione):  # la mossa è legale
                 break
         # esegui mossa sulla scacchiera
         if not scacchiera.get_pezzo(destinazione) == None:
