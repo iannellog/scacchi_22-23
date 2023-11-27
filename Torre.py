@@ -38,6 +38,8 @@ class Torre(Pezzo):
                 # verifica che non ci siano pezzi tra la casella di partenza e quella di arrivo
                 # per gestire corretamente il ciclo deve distinguere il caso di mossa per righe crescenti o decrescenti
                 first = self.posizione[1]+1 if self.posizione[1]+1 < destinazione[1] else destinazione[1]+1  # prima riga da esaminare
+                #posizione' incrementato di 1, se questo valore è minore  del primo carattere
+                # di 'destinazione'; altrimenti, sarà il primo carattere di 'destinazione' ad incrementare di 1.
                 last = destinazione[1] if self.posizione[1]+1 < destinazione[1] else self.posizione[1]  # ultma riga da esaminare
                 for riga in range(first, last):
                     if not self.scacchiera.get_pezzo([destinazione[0], riga]) == None:  # la casella è occupata
@@ -49,6 +51,7 @@ class Torre(Pezzo):
                 # per gestire corretamente il ciclo deve distinguere il caso di mossa per colonne crescenti o decrescenti
                 first = ord(self.posizione[0])+1 if ord(self.posizione[0])+1 < ord(destinazione[0]) else ord(destinazione[0])+1  # prima colonna da esaminare
                 last = ord(destinazione[0]) if ord(self.posizione[0])+1 < ord(destinazione[0]) else ord(self.posizione[0])  # ultma colonna da esaminare
+
                 for col in range(first, last):
                     if not self.scacchiera.get_pezzo([chr(col), destinazione[1]]) == None:  # la casella è occupata
                         print(f"La mossa non è legale perché è presente un pezzo ({self.scacchiera.get_pezzo([chr(col), destinazione[1]]).nome}) nella casella {chr(col)}{destinazione[1]}")
